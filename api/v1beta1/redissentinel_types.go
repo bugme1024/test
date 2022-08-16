@@ -21,6 +21,8 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
+// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+
 type Sentinel struct {
 	// +kubebuilder:validation:Minimum=3
 	Replicas        *int32                       `json:"replicas,omitempty"`
