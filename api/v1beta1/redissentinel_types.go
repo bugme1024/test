@@ -37,6 +37,8 @@ type Sentinel struct {
 	LivenessProbe   *Probe                       `json:"livenessProbe,omitempty" protobuf:"bytes,11,opt,name=livenessProbe"`
 }
 
+// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+
 // RedisClusterStatus defines the observed state of RedisCluster
 type RedisSentinelStatus struct {
 }
@@ -69,6 +71,8 @@ func (cr *RedisSentinelSpec) GetReplicaCounts(t string) int32 {
 	return replica
 }
 
+// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+
 //+kubebuilder:object:root=true
 //+kubebuilder:subresource:status
 // +kubebuilder:printcolumn:name="ClusterSize",type=integer,JSONPath=`.spec.clusterSize`,description=Current cluster node count
@@ -92,6 +96,7 @@ func (cr *RedisSentinel) GetMasterName() string {
 }
 
 //+kubebuilder:object:root=true
+// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 
 // RedisClusterList contains a list of RedisCluster
 type RedisSentinelList struct {
